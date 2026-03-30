@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+    <title>Doodh Diary - Smart Milk Tracking App for Indian Homes</title>
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Calibri;
+            line-height: 1.6;
+            color: #ffffff;
+            background: #1a1a1a;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8px 20px;
+        }
+
+        /* Complete header redesign - dark theme with minimal navigation */
+        header {
+            background: #1a1a1a;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* increased padding to create more space between logo and header border */
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .logo img {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #cccccc;
+            font-weight: 400;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 2px;
+            background: #ffffff;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero section redesigned to match reference - centered content with phone mockup */
+        .hero {
+            background: #1a1a1a;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-text {
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            line-height: 1.2;
+            color: #ffffff;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        /* App store buttons redesigned to match reference style */
+        .app-store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .app-store-btn:hover {
+            opacity: 0.8;
+        }
+
+        .app-store-btn img {
+            height: 50px;
+            width: auto;
+        }
+
+        /* Phone mockup redesigned to match reference - realistic phone with app screenshots */
+        .phone-mockup {
+            width: 280px;
+            height: 560px;
+            background: #000;
+            border-radius: 35px;
+            padding: 8px;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            margin: 0 auto;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #f5f5f5;
+            border-radius: 27px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .phone-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        /* Sections redesigned with dark theme */
+        section {
+            padding: 80px 0;
+            background: #1a1a1a;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            font-weight: 300;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #cccccc;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Features section with dark cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: #2a2a2a;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #333;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            background: #333;
+            border-color: #1976D2;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: #1976D2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .feature-card ul {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+            color: #cccccc;
+            font-size: 0.9rem;
+        }
+
+        .feature-card li:before {
+            content: "✓";
+            color: #1976D2;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Screenshots section with dark background */
+        .screenshots {
+            background: #222;
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .screenshot {
+            background: #333;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            border: 1px solid #444;
+        }
+
+        .screenshot:hover {
+            transform: translateY(-5px);
+            border-color: #1976D2;
+        }
+
+        .screenshot img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        /* Contact form with dark styling */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #444;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #2a2a2a;
+            color: #ffffff;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1976D2;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #1976D2;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1565C0;
+        }
+
+        /* FAQ section with dark styling */
+        .faq-item {
+            background: #2a2a2a;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: #cccccc;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Updated footer styling to match two-column layout with social icons */
+        footer {
+            background: #111;
+            color: #cccccc;
+            padding: 3rem 0 1.5rem;
+            border-top: 1px solid #333;
+            position: relative;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            /* Added border-bottom to create separator line above footer links */
+            border-bottom: 1px solid #333;
+            padding-bottom: 2rem;
+        }
+
+        .footer-about h3 {
+            color: #ffffff;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-about p {
+            color: #cccccc;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .footer-contact h3 {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-contact p {
+            color: #cccccc;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-contact .contact-email {
+            color: #1976D2;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-contact .contact-email:hover {
+            color: #1565C0;
+        }
+
+        .footer-social {
+            margin-top: 1rem;
+        }
+
+        .footer-social h4 {
+            color: #ffffff;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-2px);
+        }
+
+        .social-icon.facebook {
+            background: #3b5998;
+        }
+
+        .social-icon.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .social-icon.twitter {
+            background: #1da1f2;
+        }
+
+        .footer-bottom {
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #cccccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Updated scroll to top button positioning to align with footer */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1976D2;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-top:hover {
+            background: #1565C0;
+            transform: translateY(-2px);
+        }
+
+        .scroll-top.show {
+            display: flex;
+        }
+
+        /* Mobile responsive adjustments for dark theme */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #1a1a1a;
+                flex-direction: column;
+                padding: 1rem;
+                border-top: 1px solid #333;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .phone-mockup {
+                width: 240px;
+                height: 480px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .download-buttons {
+                align-items: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .screenshots-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .screenshot img {
+                height: 300px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .footer-links {
+                justify-content: center;
+                gap: 1.5rem;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+			.google-play-btn {
+            /* Yeh class image ke size ko control karti hai */
+            height: 48px; 
+            width: auto;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+            transition-property: opacity;
+            transition-duration: 300ms;
+        }
+
+        .google-play-btn:hover {
+            opacity: 0.8;
+        }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header redesigned with minimal dark navigation -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="images/ddlogo.png" >
+                DoodhDiary
+            </div>
+            <ul class="nav-links">
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#screenshots">Screenshots</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="privacy.html">Privacy Terms</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero section completely redesigned to match reference layout -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Digital Hisab for Milk - Smart Milk Tracking Made Simple for Indian Homes</h1>
+                    <p>Tired of messy notebooks and forgotten bills? Doodh Diary is your simple, offline-first app to track daily milk delivery. Easily manage your bills, generate monthly reports, and share them on WhatsApp with your trusted doodhwala. It's hassle-free, bilingual, and secure—making it the perfect solution for every Indian home.</p>
+                    <div class="download-buttons">
+                    <a href="#" class="inline-block">
+                        <!-- Google Play image button -->
+                        <img src="images/btn_google.png?text=btn_google.png" alt="Get it on Google Play" class="google-play-btn">
+                    </a>
+                </div>
+                </div>
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <!-- Phone screen now shows actual app screenshot -->
+                        <img src="images/screenshot1.png" alt="DoodhDiary App Interface">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All sections redesigned with dark theme -->
+    <section id="why-us">
+        <div class="container">
+            <h2 class="section-title">Why Choose DoodhDiary?</h2>
+            <p class="section-subtitle">Designed specifically for Indian households and their trusted milk delivery partners</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🇮🇳</div>
+                    <h3>Built for Indian households</h3>
+                    <p>Simple daily entries, monthly totals, one-tap share to Doodhwale Bhaiya/Didi. User-friendly interface that works for all age groups.</p>
+                </div>
+				<div class="feature-card">
+                    <div class="feature-icon">📵</div>
+                    <h3>Offline First - Secure & Private</h3>
+                    <p>Works without internet. Your data stays on your phone and completely secure with end-to-end encryption.</p>
+                </div>
+               <!-- <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Simple & Easy</h3>
+                    <p>User-friendly interface that works for all age groups, from young adults to elderly family members</p>
+                </div>-->
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Multilingual from Day 1</h3>
+                    <p>English & Hindi labels throughout. Instant switch. More Indian languages are coming soon.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">Powerful Features</h2>
+            <p class="section-subtitle">Everything you need to manage your daily milk supply efficiently</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Daily Milk Entry</h3>
+                    <ul>
+                        <li>Quick add: litres & rate</li>
+                        <li>Shows 4–5 recent entries</li>
+                        <li>Load older by month</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Monthly Bill Generator</h3>
+                    <ul>
+                        <li>Auto‑generate on 1st for last month</li>
+                        <li>Neat date‑wise summary</li>
+                        <li>PNG share to WhatsApp</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Bilingual UI</h3>
+                    <ul>
+                        <li>English & Hindi labels</li>
+                        <li>Instant switch</li>
+                        <li>Every label covered</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>PIN Login (No OTP)</h3>
+                    <ul>
+                        <li>Fast access with 4‑digit PIN</li>
+                        <li>Optional "Remember Me"</li>
+                        <li>Multi‑user ready</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Reminders</h3>
+                    <ul>
+                        <li>Morning/evening toggle</li>
+                        <li>Quiet by default</li>
+                        <li>Optimized for Android</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Light & Dark Theme</h3>
+                    <ul>
+                        <li>Modern, clean UI</li>
+                        <li>Blue accent #1976D2</li>
+                        <li>Focus on readability</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="screenshots" class="screenshots">
+        <div class="container">
+            <h2 class="section-title">App Screenshots</h2>
+            <p class="section-subtitle">Take a look at DoodhDiary's intuitive interface</p>
+            <div class="screenshots-grid">
+                <div class="screenshot">
+                    <img src="images/screenshot1.png" alt="Home Screen - Daily milk entry interface">
+                </div>
+                <div class="screenshot">
+                    <img src="images/screenshot2.png" alt="History Screen - Monthly milk tracking">
+                </div>
+                <div class="screenshot">
+                    <img src="images/screenshot3.png" alt="Settings Screen - App configuration">
+                </div>
+                <div class="screenshot">
+                    <img src="images/screenshot4.png" alt="Monthly Bills - Bill generation">
+                </div>
+                <div class="screenshot">
+                    <img src="images/screenshot5.png" alt="Reminder Settings - Time picker">
+                </div>
+                <div class="screenshot">
+                    <img src="images/screenshot6.png" alt="Rate Settings - Price configuration">
+                </div>
+                <div class="screenshot">
+                    <img src="images/screenshot7.png" alt="User Guide - How to use app">
+                </div>
+                <div class="screenshot">
+                    <img src="images/screenshot8.png" alt="Bill Preview - Generated bill">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Have questions? We'd love to hear from you</p>
+            <form class="contact-form" onsubmit="submitContact(event)">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+                <div id="ok" style="display: none; color: #4CAF50; margin-top: 1rem; text-align: center;">Message sent successfully! We'll get back to you soon.</div>
+                <div id="err" style="display: none; color: #f44336; margin-top: 1rem; text-align: center;"></div>
+            </form>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Does Doodh Diary work offline?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes. It is designed to work without internet. Your entries and bills stay on your device.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Can I use the app without internet?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes! DoodhDiary works completely offline. Your data is stored locally on your device and can be synced to cloud when internet is available.
+                </div>
+            </div>
+			 <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Is there a login?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                   We use a quick 4‑digit PIN (no OTP) so families can access their own profiles easily.
+                </div>
+            </div>
+			 <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Can I share the monthly bill?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                   Yes. Export a clean PNG and send via WhatsApp or save to gallery.
+                </div>
+            </div>
+			<div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Which languages are supported?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                   English and Hindi from day one. More languages planned.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Is my data secure?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    We use end-to-end encryption and your data is stored securely. We never share your personal information with third parties.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="privacy">
+        <div class="container">
+            <h2 class="section-title">Terms of Service</h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: left;">
+                             
+                <h3 style="color: #1976D2; margin-bottom: 1rem;">Terms of Service</h3>
+                <p style="margin-bottom: 1.5rem; color: #cccccc;">By using DoodhDiary, you agree to our terms of service. The app is provided as-is for personal use in tracking milk delivery and payments.</p>
+                
+                <h3 style="color: #1976D2; margin-bottom: 1rem;">Data Security</h3>
+                <p style="color: #cccccc;">All data is encrypted and stored securely. You have full control over your data and can export or delete it at any time.</p>
+            </div>
+        </div>
+    </section>
+
+<footer>
+    <div class="container">
+        <div class="footer-main">
+            <div class="footer-about">
+                <h3>Doodh Diary - Digital Hisab</h3>
+                <p>Doodh Diary - Digital Hisab: A leading privacy-first milk tracking app designed to empower Indian households with secure, intuitive, and comprehensive tools for tracking milk delivery and payments. With DoodhDiary, take control of your daily milk supply while ensuring your data remains secure and private.</p>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact us</h3>
+                <p>For queries and support, contact us at <a href="mailto:support@digitaldoodhdiary.com" class="contact-email">support@digitaldoodhdiary.com</a></p>
+                <div class="footer-social">
+                    <h4>Follow us!</h4>
+                    <div class="social-icons">
+                        <a href="https://facebook.com/digitaldoodhdiary" class="social-icon facebook" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com/digitaldoodhdiary" class="social-icon instagram" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://x.com/digitaldoodhdiary" class="social-icon twitter" aria-label="Twitter">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+       
+        <div class="footer-bottom">
+             <p>&copy; 2025 Doodh Diary. Made with ❤️ for Indian households. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#faq">FAQ</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <button class="scroll-top" onclick="scrollToTop()">↑</button>
+
+
+   <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // FAQ toggle
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-question span').textContent = '+';
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+                element.querySelector('span').textContent = '-';
+            }
+        }
+
+        // Scroll to top functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
+        // Formspree integration function
+        const FORM_ENDPOINT = "https://formspree.io/f/mgvnvkzy";
+
+        async function submitContact(e) {
+            e.preventDefault();
+            const form = e.target;
+            const ok = form.querySelector("#ok");
+            const err = form.querySelector("#err");
+            const submitBtn = form.querySelector('button[type="submit"]');
+            
+            // Hide previous messages
+            ok.style.display = "none"; 
+            err.style.display = "none";
+            
+            // Show loading state
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            const data = {
+                name: form.name.value.trim(),
+                email: form.email.value.trim(),
+                message: form.message.value.trim()
+            };
+
+            try {
+                const res = await fetch(FORM_ENDPOINT, {
+                    method: "POST",
+                    headers: { 
+                        "Content-Type": "application/json", 
+                        "Accept": "application/json" 
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (res.ok) {
+                    form.reset();
+                    ok.style.display = "block";
+                } else {
+                    err.textContent = "Could not send (" + res.status + ").";
+                    err.style.display = "block";
+                }
+            } catch (ex) {
+                err.textContent = "Network error. Please try again.";
+                err.style.display = "block";
+            } finally {
+                // Reset button state
+                submitBtn.textContent = 'Send Message';
+                submitBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+<html>
+
